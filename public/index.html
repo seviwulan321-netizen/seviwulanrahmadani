@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Pertamaku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌟 Website Pertamaku</h1>
+            <p class="subtitle">Dibuat dengan Node.js & Express</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>👋 Selamat Datang!</h2>
+                <p>Ini adalah website pertama saya yang di-deploy ke Vercel.</p>
+                <p>Saya belajar membuat website menggunakan HP Android!</p>
+            </div>
+
+            <div class="card">
+                <h2>⚡ Fitur</h2>
+                <ul>
+                    <li>✅ Server Node.js dengan Express</li>
+                    <li>✅ Design Responsive (bagus di HP)</li>
+                    <li>✅ API Backend sederhana</li>
+                    <li>✅ Deploy otomatis di Vercel</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>🔗 Test API</h2>
+                <p>Tap tombol di bawah untuk mengambil data dari server:</p>
+                <button id="btn-api" onclick="ambilData()">Ambil Data dari API</button>
+                <div id="hasil-api"></div>
+            </div>
+
+            <div class="card">
+                <h2>📝 Tentang Saya</h2>
+                <p>Nama: <strong>[Tulis Namamu]</strong></p>
+                <p>Hobi: <strong>Belajar Programming</strong></p>
+                <p>Motto: <strong>Belajar sedikit demi sedikit!</strong></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Dibuat dengan ❤️ menggunakan Node.js</p>
+            <p>&copy; 2025 Website Pertamaku</p>
+        </footer>
+    </div>
+
+    <script>
+        async function ambilData() {
+            const hasil = document.getElementById('hasil-api');
+            hasil.innerHTML = '⏳ Mengambil data...';
+
+            try {
+                const response = await fetch('/api/salam');
+                const data = await response.json();
+                hasil.innerHTML = `
+                    <div class="api-result">
+                        <p>📨 Pesan: <strong>${data.pesan}</strong></p>
+                        <p>🕐 Waktu Server: <strong>${data.waktu}</strong></p>
+                    </div>
+                `;
+            } catch (error) {
+                hasil.innerHTML = '❌ Gagal mengambil data';
+            }
+        }
+    </script>
+</body>
+</html>
